@@ -139,7 +139,7 @@ These are generic recipes any bot can invoke — not one-off chat scripts:
 
 ---
 
-## Why a sister might care
+## Why someone might care
 
 This is a concrete answer to “what would I actually *do* with a bunch of Grok Bots?”:
 
