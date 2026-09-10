@@ -103,6 +103,75 @@ Sundays add the school-week brief at 6:00 PM. Weekends use the 10:00 AM spouse d
 
 ---
 
+## What each bot does in practice (non-identifying examples)
+
+These are the kinds of moments the bots handle — not real names, numbers, or medical details.
+
+### Chief of Staff
+- Someone starts saving a routine Chris already said **no** to → CoS **STOP/VETO**s the saver until there’s an explicit new yes.
+- Two bots start the same leftover-mail cleanup → CoS kills the duplicate run.
+- Chris asks “what’s on Tuesday?” → CoS pulls work + personal + Family calendars and flags overlaps (e.g. a work stand-up stacked on a personal appointment).
+
+### dr eggbot
+- Chris wants a new single-job bot (e.g. conference trip planner) → asks a few preference questions, creates it with a tight “only job / never do” persona.
+- Weekly scan finds a routine firing every empty morning for no reason → proposes a quieter cadence or a “stay quiet when empty” fix.
+- Transcript audit spots the same correction three times → proposes a skill so the swarm stops relearning it in chat.
+
+### Morning Digest
+- Weekday 7am: “Garbage and recycling today. Work meeting A overlaps personal hold B — attend A, leave B on the calendar. Remind spouse about kid pickup timing.”
+- Never declines a work meeting; never dumps the spouse’s full workday into Chris’s brief.
+
+### Laura Digests (spouse SMS)
+- Builds a short text like: `Kid : missing worksheet in science` / `House : recycling out` — hands it to Tech Master to send — shows Chris the exact body.
+- Empty morning → silence (no “nothing today” spam).
+- Never includes Chris’s work meetings in the spouse text.
+
+### Inbox Sweep
+- Trashes promo/social older than a week; **keeps** receipts, bills, school mail, and a named monthly spa-coupon newsletter.
+- Lists new LinkedIn connection asks; auto-accepts only people from an employer allowlist; leaves everyone else pending.
+- New spa-coupon mail arrives → restores it if trashed, pulls the coupon **images**, sends them to Chris (no invented typed codes).
+
+### School
+- Mon/Wed/Fri: “Three missing items in one class; grade dipped in another” → report in chat + spouse SMS via Tech Master.
+- Sunday 6pm: week-ahead brief (forms, fees, early-outs) using **Friday’s** grades pull — does **not** ask for a weekend school-portal login.
+- All-clear still sends (Chris asked not to stay quiet on grades).
+
+### CFO
+- Weekday morning: “Two bills due this week; one account looks thin before payday” — real YNAB numbers only, no invented balances.
+- 1st of month: prior-month spend by category (read-only wrap). Optional partner summary is handed to Tech Master as SMS, not sent by CFO.
+- Never moves money or places trades without an explicit ask.
+
+### Shopping
+- Saturday note “milk, dog chews, bulk paper towels” → splits into Walmart vs warehouse lists, builds carts in the signed-in browser.
+- Price swap needed → asks once; otherwise proceeds.
+- Cart sits ready — **checkout only when Chris says so**.
+
+### Health
+- “Logged morning set as taken” / “Bedtime set not logged yet — did you take it?” — one ask, then stop.
+- Never invents a dose, never gives medical advice, never scrapes a pharmacy portal.
+- Details stay in Health’s private log — not in this public writeup.
+
+### Tech Master
+- Inbound family text “dentist Thursday 2pm” → routes to the calendar lane; no auto-reply unless Chris already asked for one.
+- School/Laura Digests/CFO hand an exact SMS body → Tech Master sends on household Twilio and confirms.
+- Publishes/updates GitHub Pages (like this site); other bots don’t hold GitHub PATs.
+
+### Tool Updater
+- Weekday check: connector healthy? Already-installed CLI one patch behind? → same-channel upgrade on the shared Grok Bot computer only.
+- Quiet when everything’s current. Never expands into new products or the human’s personal Mac.
+
+### Continuing EDU
+- Nightly: “New frontier model release notes + one real build writeup” — short, sourced, deduped; skips tutorial spam.
+- Daily Claude Code release watch: only surfaces real new capabilities; silence if nothing changed.
+- Never implements a find or spins up a new bot from a hunt (that’s Tech Master / dr eggbot).
+
+### Re:Invent
+- Preference intake once (“level floor, hard skips, topics”) → weekday morning + evening **session suggestion batches** with abstracts.
+- Schedule-change webhook: reserved vs wishlist drift → ping only when something actually moved.
+- Finite trip bot — delete after the conference unless Chris extends it.
+
+---
+
 ## Shared skills (reusable playbooks)
 
 These are generic recipes any bot can invoke — not one-off chat scripts:

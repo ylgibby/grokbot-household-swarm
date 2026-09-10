@@ -203,6 +203,26 @@
       padding: 2.5rem 0 3rem; color: var(--muted); font-size: 0.9rem;
       border-top: 1px solid var(--line); margin-top: 1rem;
     }
+
+    .practice-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.25rem;
+    }
+    @media (max-width: 700px) { .practice-grid { grid-template-columns: 1fr; } }
+    .practice {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.1rem 1.2rem;
+      box-shadow: 0 8px 24px rgba(26, 21, 35, 0.04);
+    }
+    .practice h3 {
+      margin: 0 0 0.55rem; font-family: Fraunces, Georgia, serif;
+      font-size: 1.15rem; letter-spacing: -0.01em;
+    }
+    .practice ul { margin: 0; padding-left: 1.15rem; color: var(--muted); }
+    .practice li { margin: 0.4rem 0; }
+    .practice code {
+      font-size: 0.88em; background: #f0e9df; padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
     footer a { font-weight: 600; }
   </style>
 </head>
@@ -215,6 +235,7 @@
         <a href="#rules">Rules</a>
         <a href="#bots">Bots</a>
         <a href="#day">Weekday</a>
+        <a href="#practice">In practice</a>
         <a href="#why">Why care</a>
       </nav>
     </div>
@@ -341,6 +362,120 @@
           <div class="t-item"><div class="t-time">6:00 / 7:00</div><div class="t-what">Continuing EDU — Claude Code watch · nightly CE pull</div></div>
           <div class="t-item"><div class="t-time">8:00</div><div class="t-what">Re:Invent evening session batch</div></div>
           <div class="t-item"><div class="t-time">9:00</div><div class="t-what">Health bedtime check-in</div></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="practice">
+      <div class="wrap">
+        <div class="narrow">
+          <h2>What each bot does in practice</h2>
+          <p class="section-intro">Non-identifying examples — the kinds of moments the bots handle, not real names, numbers, or medical details.</p>
+        </div>
+        <div class="practice-grid">
+          <article class="practice">
+            <h3>Chief of Staff</h3>
+            <ul>
+            <li>Someone starts saving a routine the human already said <strong>no</strong> to → CoS <strong>STOP/VETO</strong>s the saver until there’s an explicit new yes.</li>
+            <li>Two bots start the same leftover-mail cleanup → CoS kills the duplicate run.</li>
+            <li>“What’s on Tuesday?” → pulls work + personal + Family calendars and flags overlaps (e.g. a work stand-up stacked on a personal appointment).</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>dr eggbot</h3>
+            <ul>
+            <li>Human wants a new single-job bot (e.g. conference trip planner) → asks a few preference questions, creates it with a tight “only job / never do” persona.</li>
+            <li>Weekly scan finds a routine firing every empty morning for no reason → proposes a quieter cadence or a “stay quiet when empty” fix.</li>
+            <li>Transcript audit spots the same correction three times → proposes a skill so the swarm stops relearning it in chat.</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>Morning Digest</h3>
+            <ul>
+            <li>Weekday 7am: “Garbage and recycling today. Work meeting A overlaps personal hold B — attend A, leave B on the calendar. Remind spouse about kid pickup timing.”</li>
+            <li>Never declines a work meeting; never dumps the spouse’s full workday into the human’s brief.</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>Laura Digests (spouse SMS)</h3>
+            <ul>
+            <li>Builds a short text like: <code>Kid : missing worksheet in science</code> / <code>House : recycling out</code> — hands it to Tech Master to send — shows the human the exact body.</li>
+            <li>Empty morning → silence (no “nothing today” spam).</li>
+            <li>Never includes the human’s work meetings in the spouse text.</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>Inbox Sweep</h3>
+            <ul>
+            <li>Trashes promo/social older than a week; <strong>keeps</strong> receipts, bills, school mail, and a named monthly spa-coupon newsletter.</li>
+            <li>Lists new LinkedIn connection asks; auto-accepts only people from an employer allowlist; leaves everyone else pending.</li>
+            <li>New spa-coupon mail arrives → restores it if trashed, pulls the coupon <strong>images</strong>, sends them to the human (no invented typed codes).</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>School</h3>
+            <ul>
+            <li>Mon/Wed/Fri: “Three missing items in one class; grade dipped in another” → report in chat + spouse SMS via Tech Master.</li>
+            <li>Sunday 6pm: week-ahead brief (forms, fees, early-outs) using <strong>Friday’s</strong> grades pull — does <strong>not</strong> ask for a weekend school-portal login.</li>
+            <li>All-clear still sends (human asked not to stay quiet on grades).</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>CFO</h3>
+            <ul>
+            <li>Weekday morning: “Two bills due this week; one account looks thin before payday” — real YNAB numbers only, no invented balances.</li>
+            <li>1st of month: prior-month spend by category (read-only wrap). Optional partner summary is handed to Tech Master as SMS, not sent by CFO.</li>
+            <li>Never moves money or places trades without an explicit ask.</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>Shopping</h3>
+            <ul>
+            <li>Saturday note “milk, dog chews, bulk paper towels” → splits into Walmart vs warehouse lists, builds carts in the signed-in browser.</li>
+            <li>Price swap needed → asks once; otherwise proceeds.</li>
+            <li>Cart sits ready — <strong>checkout only when the human says so</strong>.</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>Health</h3>
+            <ul>
+            <li>“Logged morning set as taken” / “Bedtime set not logged yet — did you take it?” — one ask, then stop.</li>
+            <li>Never invents a dose, never gives medical advice, never scrapes a pharmacy portal.</li>
+            <li>Details stay in Health’s private log — not in this public writeup.</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>Tech Master</h3>
+            <ul>
+            <li>Inbound family text “dentist Thursday 2pm” → routes to the calendar lane; no auto-reply unless already asked for one.</li>
+            <li>School / Laura Digests / CFO hand an exact SMS body → Tech Master sends on household Twilio and confirms.</li>
+            <li>Publishes/updates GitHub Pages (like this site); other bots don’t hold GitHub PATs.</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>Tool Updater</h3>
+            <ul>
+            <li>Weekday check: connector healthy? Already-installed CLI one patch behind? → same-channel upgrade on the shared Grok Bot computer only.</li>
+            <li>Quiet when everything’s current. Never expands into new products or the human’s personal Mac.</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>Continuing EDU</h3>
+            <ul>
+            <li>Nightly: “New frontier model release notes + one real build writeup” — short, sourced, deduped; skips tutorial spam.</li>
+            <li>Daily Claude Code release watch: only surfaces real new capabilities; silence if nothing changed.</li>
+            <li>Never implements a find or spins up a new bot from a hunt (that’s Tech Master / dr eggbot).</li>
+            </ul>
+          </article>
+          <article class="practice">
+            <h3>Re:Invent</h3>
+            <ul>
+            <li>Preference intake once (“level floor, hard skips, topics”) → weekday morning + evening <strong>session suggestion batches</strong> with abstracts.</li>
+            <li>Schedule-change webhook: reserved vs wishlist drift → ping only when something actually moved.</li>
+            <li>Finite trip bot — delete after the conference unless extended.</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
