@@ -87,17 +87,17 @@ Rather than one bot that tries to do everything, this setup is a **team of singl
 
 | Time | What fires |
 |---|---|
-| 7:00 | Morning Digest → calendar collisions + house flags |
-| 7:15 | Laura Digests → spouse SMS via Tech Master (or silence) |
-| ~7:30 | Inbox Sweep → leftover mail / LinkedIn / coupon keepers |
-| 8:00 | Health morning check-in |
-| 9:00 | CFO YNAB read · Re:Invent morning session batch |
-| ~9:38 | Tool Updater |
-| ~4:10 | School grades watch (Mon/Wed/Fri) → report + optional spouse SMS via Tech Master |
-| 6:00 | Continuing EDU — Claude Code features watch |
-| 7:00 | Continuing EDU — nightly CE pull |
-| 8:00 | Re:Invent evening session batch |
-| 9:00 | Health bedtime check-in |
+| 7:00 AM | Morning Digest → calendar collisions + house flags |
+| 7:15 AM | Laura Digests → spouse SMS via Tech Master (or silence) |
+| ~7:30 AM | Inbox Sweep → leftover mail / LinkedIn / coupon keepers |
+| 8:00 AM | Health morning check-in |
+| 9:00 AM | CFO YNAB read · Re:Invent morning session batch |
+| ~9:38 AM | Tool Updater |
+| ~4:10 PM | School grades watch (Mon/Wed/Fri) → report + optional spouse SMS via Tech Master |
+| 6:00 PM | Continuing EDU — Claude Code features watch |
+| 7:00 PM | Continuing EDU — nightly CE pull |
+| 8:00 PM | Re:Invent evening session batch |
+| 9:00 PM | Health bedtime check-in |
 
 Sundays add the school-week brief at 6:00 PM. Weekends use the 10:00 AM spouse digest instead of 7:15. Mondays add dr eggbot’s routine health check (~8:49). Fridays add the Grok Bot template hunt (5:00 PM). The 1st of the month adds CFO’s prior-month category wrap (~9:30).
 
