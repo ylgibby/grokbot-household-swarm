@@ -4,30 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Running a household with Grok Bots</title>
-  <meta name="description" content="How one family runs specialized Grok Bots as a household swarm — ops on autopilot with a meat-proxy veto." />
+  <meta name="description" content="How one family runs specialized Grok Bots as a household swarm — ops on autopilot with a human veto." />
   <meta property="og:title" content="Running a household with Grok Bots" />
-  <meta property="og:description" content="Household ops on autopilot with a human veto. Meet the meat proxy." />
+  <meta property="og:description" content="Household ops on autopilot with a human veto. 13 specialized bots." />
   <meta property="og:image" content="hero.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink: #1a1523;
-      --muted: #5c5366;
-      --paper: #f7f1e8;
-      --card: #fffdf9;
-      --line: #e4d8c8;
-      --indigo: #2f2a6b;
-      --indigo-soft: #4a4490;
-      --coral: #e07a5f;
-      --coral-deep: #c45c42;
-      --sage: #3d6b5a;
-      --gold: #c9a227;
-      --shadow: 0 18px 50px rgba(26, 21, 35, 0.08);
-      --radius: 18px;
-      --max: 720px;
-      --wide: 1040px;
+      --ink: #1a1523; --muted: #5c5366; --paper: #f7f1e8; --card: #fffdf9;
+      --line: #e4d8c8; --indigo: #2f2a6b; --indigo-soft: #4a4490;
+      --coral: #e07a5f; --coral-deep: #c45c42; --sage: #3d6b5a;
+      --shadow: 0 18px 50px rgba(26, 21, 35, 0.08); --radius: 18px;
+      --max: 720px; --wide: 1040px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -39,15 +29,12 @@
         radial-gradient(1200px 600px at 10% -10%, #ffe8d6 0%, transparent 55%),
         radial-gradient(900px 500px at 100% 0%, #d9d6ff 0%, transparent 50%),
         var(--paper);
-      line-height: 1.65;
-      font-size: 1.05rem;
+      line-height: 1.65; font-size: 1.05rem;
     }
     a { color: var(--indigo-soft); }
     a:hover { color: var(--coral-deep); }
     .wrap { width: min(100% - 2rem, var(--wide)); margin: 0 auto; }
     .narrow { width: min(100%, var(--max)); margin: 0 auto; }
-
-    /* top bar */
     .topbar {
       position: sticky; top: 0; z-index: 20;
       backdrop-filter: blur(12px);
@@ -59,23 +46,16 @@
       gap: 1rem; padding: 0.75rem 0;
     }
     .brand {
-      font-family: Fraunces, Georgia, serif;
-      font-weight: 700; font-size: 1rem;
-      letter-spacing: -0.02em;
-      text-decoration: none; color: var(--ink);
+      font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 1rem;
+      letter-spacing: -0.02em; text-decoration: none; color: var(--ink);
     }
     .brand span { color: var(--coral); }
     .nav { display: flex; gap: 0.9rem; flex-wrap: wrap; font-size: 0.92rem; font-weight: 600; }
     .nav a { text-decoration: none; color: var(--muted); }
     .nav a:hover { color: var(--ink); }
-
-    /* hero */
     .hero {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 2.5rem;
-      align-items: center;
-      padding: 3.5rem 0 2.5rem;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.5rem;
+      align-items: center; padding: 3.5rem 0 2.5rem;
     }
     @media (max-width: 860px) {
       .hero { grid-template-columns: 1fr; padding-top: 2rem; }
@@ -91,40 +71,24 @@
     h1 {
       font-family: Fraunces, Georgia, serif;
       font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-      line-height: 1.08; letter-spacing: -0.03em;
-      margin: 0 0 1rem;
+      line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 1rem;
     }
-    .lede {
-      font-size: 1.2rem; color: var(--muted); margin: 0 0 1.5rem; max-width: 36rem;
-    }
-    .meta {
-      font-size: 0.92rem; color: var(--muted);
-      display: flex; flex-wrap: wrap; gap: 0.5rem 1rem;
-    }
+    .lede { font-size: 1.2rem; color: var(--muted); margin: 0 0 1.5rem; max-width: 36rem; }
+    .meta { font-size: 0.92rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; }
     .pill {
       background: var(--card); border: 1px solid var(--line);
       border-radius: 999px; padding: 0.25rem 0.7rem;
     }
     .hero-art {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--line);
-      background: #1a1523;
+      position: relative; border-radius: 24px; overflow: hidden;
+      box-shadow: var(--shadow); border: 1px solid var(--line); background: #1a1523;
     }
-    .hero-art img {
-      display: block; width: 100%; height: auto;
-      vertical-align: middle;
-    }
+    .hero-art img { display: block; width: 100%; height: auto; }
     .hero-caption {
       position: absolute; left: 1rem; right: 1rem; bottom: 1rem;
-      background: rgba(26,21,35,0.72); color: #fff;
-      backdrop-filter: blur(8px);
-      border-radius: 12px; padding: 0.7rem 0.9rem;
-      font-size: 0.88rem;
+      background: rgba(26,21,35,0.72); color: #fff; backdrop-filter: blur(8px);
+      border-radius: 12px; padding: 0.7rem 0.9rem; font-size: 0.88rem;
     }
-
     section { padding: 2.75rem 0; }
     section + section { border-top: 1px dashed var(--line); }
     h2 {
@@ -132,10 +96,7 @@
       font-size: clamp(1.6rem, 2.5vw, 2.1rem);
       letter-spacing: -0.02em; margin: 0 0 0.75rem;
     }
-    h3 {
-      font-family: Fraunces, Georgia, serif;
-      font-size: 1.25rem; margin: 2rem 0 0.75rem;
-    }
+    h3 { font-family: Fraunces, Georgia, serif; font-size: 1.25rem; margin: 2rem 0 0.75rem; }
     .section-intro { color: var(--muted); margin: 0 0 1.5rem; max-width: 40rem; }
     .callout {
       background: linear-gradient(135deg, #2f2a6b, #4a4490);
@@ -145,73 +106,46 @@
     }
     .callout strong { color: #ffd7c8; }
     .callout p { margin: 0.4rem 0 0; opacity: 0.95; }
-
-    .does-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
+    .does-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     @media (max-width: 900px) { .does-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 560px) { .does-grid { grid-template-columns: 1fr; } }
     .does-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 1.1rem 1.15rem;
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.1rem 1.15rem;
       box-shadow: 0 8px 24px rgba(26,21,35,0.04);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
     .does-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
     .does-card .icon {
       width: 2.1rem; height: 2.1rem; border-radius: 10px;
-      display: grid; place-items: center;
-      font-size: 1rem; margin-bottom: 0.7rem;
+      display: grid; place-items: center; font-size: 1rem; margin-bottom: 0.7rem;
       background: #fff0ea; color: var(--coral-deep);
     }
-    .does-card h4 {
-      margin: 0 0 0.35rem; font-size: 1rem; font-weight: 700;
-    }
+    .does-card h4 { margin: 0 0 0.35rem; font-size: 1rem; font-weight: 700; }
     .does-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-
-    .rules {
-      display: grid; gap: 0.85rem;
-    }
+    .rules { display: grid; gap: 0.85rem; }
     .rule {
-      display: grid; grid-template-columns: auto 1fr; gap: 1rem;
-      align-items: start;
+      display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start;
       background: var(--card); border: 1px solid var(--line);
       border-radius: 14px; padding: 1rem 1.15rem;
     }
     .rule-num {
-      font-family: Fraunces, Georgia, serif;
-      font-weight: 700; font-size: 1.4rem; color: var(--coral);
-      line-height: 1;
+      font-family: Fraunces, Georgia, serif; font-weight: 700;
+      font-size: 1.4rem; color: var(--coral); line-height: 1;
     }
     .rule strong { display: block; margin-bottom: 0.15rem; }
     .rule span { color: var(--muted); font-size: 0.98rem; }
-
-    .bot-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
+    .bot-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     @media (max-width: 700px) { .bot-grid { grid-template-columns: 1fr; } }
     .bot {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 1.15rem 1.2rem;
-      display: flex; flex-direction: column; gap: 0.55rem;
-      min-height: 100%;
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.15rem 1.2rem;
+      display: flex; flex-direction: column; gap: 0.55rem; min-height: 100%;
     }
-    .bot-name {
-      font-family: Fraunces, Georgia, serif;
-      font-size: 1.15rem; margin: 0;
-    }
+    .bot-name { font-family: Fraunces, Georgia, serif; font-size: 1.15rem; margin: 0; }
     .bot-tag {
-      align-self: flex-start;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;
-      text-transform: uppercase;
+      align-self: flex-start; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase;
       background: #ebe8ff; color: var(--indigo);
       border-radius: 999px; padding: 0.2rem 0.55rem;
     }
@@ -221,36 +155,22 @@
     .bot p { margin: 0; color: var(--muted); font-size: 0.95rem; flex: 1; }
     .bot .sched {
       font-size: 0.82rem; color: var(--ink);
-      border-top: 1px dashed var(--line); padding-top: 0.55rem;
-      font-weight: 600;
+      border-top: 1px dashed var(--line); padding-top: 0.55rem; font-weight: 600;
     }
-
     .timeline {
-      position: relative;
-      margin: 1.5rem 0 0;
-      padding-left: 1.5rem;
+      position: relative; margin: 1.5rem 0 0; padding-left: 1.5rem;
       border-left: 3px solid #d9d2ff;
     }
-    .t-item {
-      position: relative;
-      padding: 0 0 1.25rem 0.75rem;
-    }
+    .t-item { position: relative; padding: 0 0 1.25rem 0.75rem; }
     .t-item::before {
-      content: "";
-      position: absolute; left: -1.72rem; top: 0.35rem;
+      content: ""; position: absolute; left: -1.72rem; top: 0.35rem;
       width: 0.75rem; height: 0.75rem; border-radius: 50%;
       background: var(--coral); border: 3px solid var(--paper);
       box-shadow: 0 0 0 2px var(--coral);
     }
-    .t-time {
-      font-weight: 700; font-size: 0.85rem;
-      color: var(--indigo); letter-spacing: 0.02em;
-    }
+    .t-time { font-weight: 700; font-size: 0.85rem; color: var(--indigo); }
     .t-what { color: var(--muted); }
-
-    .skills {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-    }
+    .skills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .skill {
       background: var(--card); border: 1px solid var(--line);
       border-radius: 999px; padding: 0.4rem 0.85rem;
@@ -260,14 +180,9 @@
       margin-top: 1rem; background: var(--card);
       border: 1px solid var(--line); border-radius: 14px; padding: 0.85rem 1rem;
     }
-    details.skill-more summary {
-      cursor: pointer; font-weight: 700;
-    }
+    details.skill-more summary { cursor: pointer; font-weight: 700; }
     details.skill-more ul { margin: 0.75rem 0 0; padding-left: 1.2rem; color: var(--muted); }
-
-    .two-col {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-    }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
     .panel {
       background: var(--card); border: 1px solid var(--line);
@@ -276,23 +191,17 @@
     .panel h3 { margin-top: 0; }
     .panel ul { margin: 0; padding-left: 1.15rem; color: var(--muted); }
     .panel li { margin: 0.35rem 0; }
-
     .closer {
       background: linear-gradient(160deg, #fffdf9, #ffe9de);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 2rem 1.75rem;
-      box-shadow: var(--shadow);
+      border: 1px solid var(--line); border-radius: 24px;
+      padding: 2rem 1.75rem; box-shadow: var(--shadow);
     }
     .closer h2 { margin-bottom: 0.5rem; }
     .closer ol { margin: 1rem 0 0; padding-left: 1.2rem; }
     .closer li { margin: 0.45rem 0; }
-
     footer {
-      padding: 2.5rem 0 3rem;
-      color: var(--muted); font-size: 0.9rem;
-      border-top: 1px solid var(--line);
-      margin-top: 1rem;
+      padding: 2.5rem 0 3rem; color: var(--muted); font-size: 0.9rem;
+      border-top: 1px solid var(--line); margin-top: 1rem;
     }
     footer a { font-weight: 600; }
   </style>
@@ -315,18 +224,19 @@
     <div class="wrap">
       <section class="hero" style="border:0;padding-top:2.5rem">
         <div>
-          <div class="eyebrow">Personal · non-work · Sep 2026</div>
+          <div class="eyebrow">Personal · non-work · Sep 9, 2026</div>
           <h1>Running a household with Grok Bots</h1>
           <p class="lede">A shareable look at how one family uses a <strong>swarm of specialized bots</strong> instead of one mega-assistant — household ops on autopilot, with a human veto.</p>
           <div class="meta">
-            <span class="pill">12 live bots</span>
-            <span class="pill">Meat proxy in the loop</span>
+            <span class="pill">13 live bots</span>
+            <span class="pill">~20 routines</span>
+            <span class="pill">29 shared skills</span>
             <span class="pill">Quiet when empty</span>
           </div>
         </div>
         <figure class="hero-art">
-          <img src="hero.jpg" alt="Illustration of specialized bots orbiting a central human silhouette — the meat proxy" width="800" height="600" />
-          <figcaption class="hero-caption">The meat proxy stays in the middle. The bots take the lanes.</figcaption>
+          <img src="hero.jpg" alt="Illustration of specialized bots orbiting a central human silhouette" width="800" height="600" />
+          <figcaption class="hero-caption">The human stays in the middle. The bots take the lanes.</figcaption>
         </figure>
       </section>
     </div>
@@ -338,28 +248,29 @@
           <p class="section-intro">Day to day, this is not a chatbot hobby. It’s <strong>household ops on autopilot with a human veto</strong>.</p>
         </div>
         <div class="callout narrow">
-          <strong>Meat proxy</strong> = the human.
+          <strong>Human in the loop</strong>
           <p>They still decide anything that spends money, trashes mail, or texts people. The bots do the boring, repeating work and bring decisions over when it matters.</p>
         </div>
         <div class="does-grid">
           <article class="does-card"><div class="icon">☀</div><h4>Wakes the house up</h4><p>Weekday morning brief (calendar collisions first), spouse SMS digest, leftover-mail cleanup, LinkedIn triage, spa-coupon watch.</p></article>
           <article class="does-card"><div class="icon">🎒</div><h4>Keeps school visible</h4><p>Midweek grades / missing-work checks and a Sunday “week ahead” brief — spouse gets a text when the routine says so.</p></article>
           <article class="does-card"><div class="icon">$</div><h4>Surfaces money risk</h4><p>Daily YNAB read for bills due, cash position, and anything that will bounce — plus a monthly category wrap.</p></article>
-          <article class="does-card"><div class="icon">🛒</div><h4>Builds grocery carts</h4><p>Walmart (and warehouse skills) from a messy list. <strong>Never checks out</strong> unless the meat proxy says so.</p></article>
+          <article class="does-card"><div class="icon">🛒</div><h4>Builds grocery carts</h4><p>Walmart (and warehouse skills) from a messy list. <strong>Never checks out</strong> unless the human says so.</p></article>
           <article class="does-card"><div class="icon">✚</div><h4>Logs health actions</h4><p>Records what was actually taken when told. No medical advice. No invented doses.</p></article>
-          <article class="does-card"><div class="icon">💬</div><h4>Routes family texts</h4><p>Inbound SMS webhook → the right lane. No auto-reply spam.</p></article>
+          <article class="does-card"><div class="icon">💬</div><h4>Routes family texts</h4><p>Inbound SMS webhook → the right lane. <strong>Only Tech Master</strong> sends or receives SMS.</p></article>
           <article class="does-card"><div class="icon">🛠</div><h4>Keeps the machine healthy</h4><p>Weekday tool/connector updater for already-installed stuff only.</p></article>
           <article class="does-card"><div class="icon">📚</div><h4>Scouts learning</h4><p>Short AI-for-dev briefs. Never implements finds on its own.</p></article>
-          <article class="does-card"><div class="icon">⚖</div><h4>Referees the team</h4><p>Chief of Staff STOP/VETO when lanes collide. <strong>dr eggbot</strong> does bot/skill surgery.</p></article>
+          <article class="does-card"><div class="icon">✈</div><h4>Plans a conference trip</h4><p>AWS re:Invent session batches + schedule-change webhook. Finite — delete after the event unless extended.</p></article>
+          <article class="does-card"><div class="icon">⚖</div><h4>Referees the team</h4><p>Chief of Staff <strong>STOP/VETO</strong> when lanes collide (no standing digests of its own). <strong>dr eggbot</strong> does bot/skill surgery.</p></article>
         </div>
-        <p class="narrow" style="margin-top:1.5rem;color:var(--muted)">If nothing useful happened, most digests <strong style="color:var(--ink)">stay quiet</strong>. The meat proxy’s current chat instruction always beats a standing routine.</p>
+        <p class="narrow" style="margin-top:1.5rem;color:var(--muted)">If nothing useful happened, most digests <strong style="color:var(--ink)">stay quiet</strong>. The human’s current chat instruction always beats a standing routine.</p>
       </div>
     </section>
 
     <section id="idea">
       <div class="wrap narrow">
         <h2>The idea in one paragraph</h2>
-        <p style="font-size:1.12rem;color:var(--muted)">Rather than one bot that tries to do everything, this setup is a <strong style="color:var(--ink)">team of single-job bots</strong>. Each has a clear lane, a short “never do this” list, and optional <strong style="color:var(--ink)">routines</strong> on a schedule or webhook. Reusable recipes are <strong style="color:var(--ink)">skills</strong>. A Chief of Staff keeps lanes from colliding. The meat proxy’s current chat instruction always wins.</p>
+        <p style="font-size:1.12rem;color:var(--muted)">Rather than one bot that tries to do everything, this setup is a <strong style="color:var(--ink)">team of single-job bots</strong>. Each has a clear lane, a short “never do this” list, and optional <strong style="color:var(--ink)">routines</strong> on a schedule or webhook. Reusable recipes are <strong style="color:var(--ink)">skills</strong>. A Chief of Staff keeps lanes from colliding — but it does <strong style="color:var(--ink)">not</strong> run the daily digests anymore (those were peeled to specialists). The human’s current chat instruction always wins.</p>
       </div>
     </section>
 
@@ -370,8 +281,9 @@
           <div class="rule"><div class="rule-num">1</div><div><strong>One owner of the number</strong><span>Only the money bot declares balances; only health declares the med log; only shopping declares cart contents. Others forward — they don’t invent.</span></div></div>
           <div class="rule"><div class="rule-num">2</div><div><strong>One job per bot</strong><span>Explicit anti-jobs: never place orders, never decline a work meeting, never trash the spa coupons.</span></div></div>
           <div class="rule"><div class="rule-num">3</div><div><strong>Quiet when empty</strong><span>Most digests stay silent if there’s nothing useful. A few (grades, morning digest) always send.</span></div></div>
-          <div class="rule"><div class="rule-num">4</div><div><strong>Meat-proxy approval for risky moves</strong><span>Paying, trashing mail, outbound texts — explicit yes or an approval card.</span></div></div>
-          <div class="rule"><div class="rule-num">5</div><div><strong>Surgery through the designer bot</strong><span>Personality / skill cleanup goes through <em>dr eggbot</em>, not a standing weekly committee.</span></div></div>
+          <div class="rule"><div class="rule-num">4</div><div><strong>Human approval for risky moves</strong><span>Paying, trashing mail, outbound texts — explicit yes or an approval card.</span></div></div>
+          <div class="rule"><div class="rule-num">5</div><div><strong>One owner of SMS + GitHub/Pages</strong><span><strong>Tech Master only</strong> owns Twilio (inbound + every outbound text other bots hand over) and GitHub/Pages. Other bots hand exact SMS bodies; they never install SMS credentials or send themselves.</span></div></div>
+          <div class="rule"><div class="rule-num">6</div><div><strong>Surgery through the designer bot</strong><span>Personality / skill cleanup goes through <em>dr eggbot</em>, not a standing weekly committee.</span></div></div>
         </div>
       </div>
     </section>
@@ -379,22 +291,22 @@
     <section id="bots">
       <div class="wrap">
         <div class="narrow">
-          <h2>The swarm — 12 live bots</h2>
+          <h2>The swarm — 13 live bots</h2>
           <p class="section-intro">Specialists, not generalists. Each lane has one owner.</p>
         </div>
 
         <h3 class="narrow">Orchestration</h3>
         <div class="bot-grid">
-          <article class="bot"><span class="bot-tag">Orchestration</span><h4 class="bot-name">Chief of Staff</h4><p>Household ops lead. Resolves lane conflicts, can <strong>STOP/VETO</strong> another bot’s non-user work, and remembers standing “no”s so a clarifying question can’t quietly undo them.</p><div class="sched">Chat / on-demand</div></article>
+          <article class="bot"><span class="bot-tag">Orchestration</span><h4 class="bot-name">Chief of Staff</h4><p>Household ops lead. Resolves lane conflicts, can <strong>STOP/VETO</strong> another bot’s non-user work, and remembers standing “no”s. Digests, school, and inbox were peeled off — <strong>no standing digests of its own</strong>.</p><div class="sched">Chat / on-demand</div></article>
           <article class="bot"><span class="bot-tag">Orchestration</span><h4 class="bot-name">dr eggbot</h4><p>Designs new bots and does persona/skill “surgery.” Tight bar: one job, one voice, no leftover tools.</p><div class="sched">Mon AM fleet check · weekday transcript friction → ideas</div></article>
         </div>
 
         <h3 class="narrow">Daily house rhythm</h3>
         <div class="bot-grid">
-          <article class="bot"><span class="bot-tag rhythm">Rhythm</span><h4 class="bot-name">Morning Digest</h4><p>Weekday brief for the meat proxy: <strong>calendar collision check</strong> first, then house/kids flags. Never declines a work meeting.</p><div class="sched">Weekdays 7:00 AM</div></article>
-          <article class="bot"><span class="bot-tag rhythm">Rhythm</span><h4 class="bot-name">Spouse Digests</h4><p>Morning SMS to the spouse — her calendar, house, and school-age kid lines only. Shows the meat proxy the exact text that went out.</p><div class="sched">Weekdays 7:15 · Weekends 10:00</div></article>
+          <article class="bot"><span class="bot-tag rhythm">Rhythm</span><h4 class="bot-name">Morning Digest</h4><p>Weekday brief: <strong>calendar collision check</strong> first, then house/kids flags. Never declines a work meeting.</p><div class="sched">Weekdays 7:00 AM</div></article>
+          <article class="bot"><span class="bot-tag rhythm">Rhythm</span><h4 class="bot-name">Laura Digests</h4><p>Morning SMS to the spouse — her calendar, house, and middle-schooler lines only. Hands the exact text to Tech Master to send.</p><div class="sched">Weekdays 7:15 · Weekends 10:00</div></article>
           <article class="bot"><span class="bot-tag rhythm">Rhythm</span><h4 class="bot-name">Inbox Sweep</h4><p>Leftover-mail cleanup on both household Gmails, LinkedIn allowlist accepts, catch-and-send for a monthly spa coupon newsletter.</p><div class="sched">Weekdays ~7:30 AM</div></article>
-          <article class="bot"><span class="bot-tag rhythm">Rhythm</span><h4 class="bot-name">School</h4><p>Middle-schooler lane: grades / missing work + Sunday “week ahead.” Never opens the school portal on Sundays (reuses Friday).</p><div class="sched">Mon/Wed/Fri ~4:10 · Sundays 6:00 PM</div></article>
+          <article class="bot"><span class="bot-tag rhythm">Rhythm</span><h4 class="bot-name">School</h4><p>Middle-schooler lane: grades / missing work + Sunday “week ahead.” Spouse texts go via Tech Master.</p><div class="sched">Mon/Wed/Fri ~4:10 · Sundays 6:00 PM</div></article>
         </div>
 
         <h3 class="narrow">Money, shopping, health</h3>
@@ -406,9 +318,10 @@
 
         <h3 class="narrow">Tech &amp; learning</h3>
         <div class="bot-grid">
-          <article class="bot"><span class="bot-tag tech">Tech</span><h4 class="bot-name">Tech Master</h4><p>Code and tools for the swarm; routes inbound family SMS to the right lane. Repo work goes to a cloud coding agent.</p><div class="sched">Inbound SMS webhook (always on)</div></article>
-          <article class="bot"><span class="bot-tag tech">Tech</span><h4 class="bot-name">Tool Updater</h4><p>Weekday health check + upgrades for <strong>already-installed</strong> tools on the shared computer. Never expands scope or touches the meat proxy’s Mac.</p><div class="sched">Weekdays ~9:38 AM</div></article>
+          <article class="bot"><span class="bot-tag tech">Tech</span><h4 class="bot-name">Tech Master</h4><p>Code and tools; <strong>sole owner of Twilio/SMS</strong> and <strong>GitHub/Pages</strong>. Repo work goes to a cloud coding agent.</p><div class="sched">Inbound SMS webhook (always on)</div></article>
+          <article class="bot"><span class="bot-tag tech">Tech</span><h4 class="bot-name">Tool Updater</h4><p>Weekday health check + upgrades for <strong>already-installed</strong> tools. Never expands scope or touches the human’s Mac.</p><div class="sched">Weekdays ~9:38 AM</div></article>
           <article class="bot"><span class="bot-tag tech">Learning</span><h4 class="bot-name">Continuing EDU</h4><p>Scouts AI-for-dev learning. Short verified briefs only. Never implements finds or spawns bots from a hunt.</p><div class="sched">Nightly CE · daily release watch · Friday template hunt</div></article>
+          <article class="bot"><span class="bot-tag tech">Trip</span><h4 class="bot-name">Re:Invent</h4><p>Finite AWS re:Invent bot: session suggestion batches + planner schedule-change webhook. Delete after the event unless extended.</p><div class="sched">Weekdays 9:00 AM + 8:00 PM · schedule webhook</div></article>
         </div>
       </div>
     </section>
@@ -416,15 +329,18 @@
     <section id="day">
       <div class="wrap narrow">
         <h2>A typical weekday</h2>
-        <p class="section-intro">Mountain time. Sundays add the school-week brief at 6:00 PM. Mondays add dr eggbot’s routine health check.</p>
+        <p class="section-intro">Mountain time. Sundays add the school-week brief at 6:00 PM. Weekends use the 10:00 AM spouse digest. Mondays add dr eggbot’s routine health check. Fridays add the template hunt. The 1st adds CFO’s month wrap.</p>
         <div class="timeline">
           <div class="t-item"><div class="t-time">7:00</div><div class="t-what">Morning Digest → calendar collisions + house flags</div></div>
-          <div class="t-item"><div class="t-time">7:15</div><div class="t-what">Spouse Digests → SMS (or silence)</div></div>
+          <div class="t-item"><div class="t-time">7:15</div><div class="t-what">Laura Digests → spouse SMS via Tech Master (or silence)</div></div>
           <div class="t-item"><div class="t-time">~7:30</div><div class="t-what">Inbox Sweep → leftover mail / LinkedIn / coupon keepers</div></div>
-          <div class="t-item"><div class="t-time">8:00 / 9:00</div><div class="t-what">Health morning check · CFO YNAB read</div></div>
+          <div class="t-item"><div class="t-time">8:00</div><div class="t-what">Health morning check-in</div></div>
+          <div class="t-item"><div class="t-time">9:00</div><div class="t-what">CFO YNAB read · Re:Invent morning session batch</div></div>
           <div class="t-item"><div class="t-time">~9:38</div><div class="t-what">Tool Updater</div></div>
-          <div class="t-item"><div class="t-time">~4:10</div><div class="t-what">School grades (Mon/Wed/Fri) → report + optional spouse SMS</div></div>
-          <div class="t-item"><div class="t-time">Evening</div><div class="t-what">Continuing EDU pulls · Health bedtime check</div></div>
+          <div class="t-item"><div class="t-time">~4:10</div><div class="t-what">School grades (Mon/Wed/Fri) → optional spouse SMS via Tech Master</div></div>
+          <div class="t-item"><div class="t-time">6:00 / 7:00</div><div class="t-what">Continuing EDU — Claude Code watch · nightly CE pull</div></div>
+          <div class="t-item"><div class="t-time">8:00</div><div class="t-what">Re:Invent evening session batch</div></div>
+          <div class="t-item"><div class="t-time">9:00</div><div class="t-what">Health bedtime check-in</div></div>
         </div>
       </div>
     </section>
@@ -440,32 +356,34 @@
           <span class="skill">Bill scan</span>
           <span class="skill">Month wrap</span>
           <span class="skill">Taken-log</span>
+          <span class="skill">Seasonal clinic</span>
           <span class="skill">Cart charter</span>
           <span class="skill">Saturday → carts</span>
           <span class="skill">Verified brief</span>
+          <span class="skill">CE preference</span>
           <span class="skill">Connector health</span>
-          <span class="skill">Routine healthcheck</span>
+          <span class="skill">Connector lane map</span>
+          <span class="skill">SMS lane handoff</span>
+          <span class="skill">Wire webhook</span>
           <span class="skill">Design a bot</span>
           <span class="skill">One owner of the number</span>
           <span class="skill">Ghost purge</span>
+          <span class="skill">Re:Invent prefs / suggest</span>
         </div>
         <details class="skill-more">
           <summary>Full skill list</summary>
           <ul>
             <li><strong>Leftover inbox sweep</strong> — trash promo/social noise older than a week; keep receipts/bills/named keepers</li>
             <li><strong>LinkedIn connection check</strong> — accept only an employer allowlist</li>
-            <li><strong>Skyward grades pull</strong> — school-portal grades / missing work (meat-proxy login handoff)</li>
-            <li><strong>Recurring bill scan</strong> — YNAB: expected bills that didn’t post</li>
-            <li><strong>Monthly category spend</strong> — close prior month by category</li>
-            <li><strong>Taken-log intake</strong> — record what meds were actually taken</li>
-            <li><strong>Cart charter / Walmart / Costco / Sam’s usuals</strong> — store-specific carts from a messy list</li>
-            <li><strong>Saturday note → carts</strong> — split a family shopping note across stores</li>
-            <li><strong>Verified source brief</strong> — deduped, sourced CE items (no hype)</li>
-            <li><strong>Connector / routine / transcript healthchecks</strong> — fleet waste + friction → ideas</li>
-            <li><strong>Design a Grok Bot / Make Bot UI</strong> — new bot design; optional webhook UI</li>
-            <li><strong>One owner of the number</strong> — lane ownership when bots share work</li>
-            <li><strong>Prefer standing preference</strong> — don’t flip quiet-vs-always-ping without intent</li>
-            <li><strong>Ghost agent purge</strong> — clean orphan records only after an explicit yes</li>
+            <li><strong>Skyward grades pull</strong> — school-portal grades / missing work (human login handoff)</li>
+            <li><strong>Recurring bill scan / monthly category spend</strong> — YNAB money hygiene</li>
+            <li><strong>Taken-log intake / seasonal clinic lookup</strong> — health lane helpers</li>
+            <li><strong>Cart charter / Walmart / Costco / Sam’s / Saturday note → carts</strong> — shopping</li>
+            <li><strong>Verified source brief / CE preference feedback</strong> — continuing education</li>
+            <li><strong>Connector health / lane map / SMS lane handoff / wire webhook</strong> — Tech Master lanes</li>
+            <li><strong>Routine / transcript healthcheck / design a bot / after peel reoffer / ghost purge</strong> — fleet hygiene</li>
+            <li><strong>One owner of the number / prefer standing preference</strong> — lane rules</li>
+            <li><strong>Re:Invent preference intake / session suggest / planner pick map</strong> — conference trip</li>
           </ul>
         </details>
       </div>
@@ -477,10 +395,11 @@
           <div class="panel">
             <h3>How they talk</h3>
             <ul>
-              <li><strong>1:1 chats</strong> with the meat proxy for each lane</li>
+              <li><strong>1:1 chats</strong> with the human for each lane</li>
               <li><strong>Group rooms</strong> for swarm discussion (Board Meeting gut-checks cancelled — design goes through <strong>dr eggbot</strong>)</li>
-              <li><strong>STOP/VETO</strong> from Chief of Staff for duplicates, lane conflicts, or a recorded meat-proxy “no”</li>
+              <li><strong>STOP/VETO</strong> from Chief of Staff for duplicates, lane conflicts, or a recorded human “no”</li>
               <li><strong>Inbound SMS</strong> → Tech Master webhook → routed, no auto-reply unless asked</li>
+              <li><strong>Outbound SMS</strong> is always a handoff: specialist builds the exact body → Tech Master sends</li>
             </ul>
           </div>
           <div class="panel">
@@ -488,8 +407,10 @@
             <ul>
               <li>No “do my job for me at work” coding bots on this personal account</li>
               <li>No paper-trading / investment bot (retired)</li>
-              <li>No checkout, money moves, or medical advice without the meat proxy</li>
+              <li>No checkout, money moves, or medical advice without the human</li>
               <li>No church/calendar spam treated as appointments</li>
+              <li>No standing digests on Chief of Staff (peeled to specialists)</li>
+              <li>No Twilio/SMS or GitHub/Pages ownership outside <strong>Tech Master</strong></li>
               <li>Health content stays private — this page names the <em>job</em>, not the data</li>
             </ul>
           </div>
@@ -505,8 +426,8 @@
           <ol>
             <li>Split life into <strong>lanes</strong> with clear owners</li>
             <li>Put the boring recurring stuff on <strong>schedules</strong></li>
-            <li>Keep a <strong>meat proxy in the loop</strong> for spend, trash, and outbound messages</li>
-            <li>Grow the team by peeling a job off the orchestrator into a specialist (morning digest, spouse texts, inbox, school all started that way)</li>
+            <li>Keep a <strong>human in the loop</strong> for spend, trash, and outbound messages</li>
+            <li>Grow the team by peeling a job off the orchestrator into a specialist (morning digest, spouse texts, inbox, school, tool updater, re:Invent all started that way)</li>
           </ol>
           <p style="margin:1.25rem 0 0">If you want to try it: start with <strong>one</strong> bot and <strong>one</strong> routine you already wish someone would just handle — then split only when the chat gets crowded.</p>
         </div>
@@ -516,8 +437,8 @@
 
   <footer>
     <div class="wrap narrow">
-      <p>Generated for sharing · no phone numbers, emails, addresses, account logins, or medical specifics.</p>
-      <p><a href="https://github.com/ylgibby/grokbot-household-swarm">Source on GitHub</a></p>
+      <p>Generated for sharing · no phone numbers, emails, addresses, account logins, SIDs, dollar amounts, or medical specifics.</p>
+      <p><a href="https://github.com/ylgibby/grokbot-household-swarm">Source on GitHub</a> · Snapshot Sep 9, 2026</p>
     </div>
   </footer>
 </body>
